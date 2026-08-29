@@ -1,5 +1,5 @@
 CXX      := g++
-CXXFLAGS := -std=c++20 -Wall -Wextra -g
+CXXFLAGS := -std=c++20 -Werror -g
 
 DIRS := $(wildcard [0-9][0-9]_*)
 

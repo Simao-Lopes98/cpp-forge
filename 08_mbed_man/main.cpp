@@ -1,23 +1,29 @@
 // Small command-line simulation of an embedded device manager.
 
-#include "mbed_man.hpp"
+#include "device.hpp"
 #include "sensor.hpp"
-
+#include "motor.hpp"
+#include <vector>
 #include <iostream>
 
 using namespace std;
 
-
+static vector<Device *> devices;
 
 int main (void)
 {
-    Device deviceMan;
-    Sensor sensor1 (1, true, SENSOR, 13.5, 58);
 
-    deviceMan.setId(2);
-    deviceMan.setState(false);
-    deviceMan.setType(MOTOR);
+    Sensor sensor (0, true, 13.5, 58);
+    Motor motorDc (1, true, 1400, DC, CW);
+    Motor motorAcAsc (2, false, 0, AC_ASYNC, CCW);
 
-    deviceMan.printStatus();
-    sensor1.printStatus();
+    devices.push_back (&sensor);
+    devices.push_back (&motorDc);
+    devices.push_back (&motorAcAsc);
+
+    for (Device * device : devices)
+    {
+        device->printStatus();
+    }
+    
 }

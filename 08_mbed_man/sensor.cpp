@@ -5,13 +5,12 @@
 
 Sensor::Sensor (    int id, 
                     bool state, 
-                    deviceType_t type, 
                     float temperatur, 
                     float humidity)
 {
     setId(id);
     setState (state);
-    setType (type);
+    setType (SENSOR);
     setTemp (temperatur);
     setHum (humidity);
 }
@@ -38,9 +37,7 @@ void Sensor::setHum (float hum)
 
 void Sensor::printStatus (void) 
 {
-    printf ("Id:    %" PRIu16 "\n", getId());
-    printf ("State: %s\n", stateToString(getState()).c_str());
-    printf ("Type:  %s\n", typeToString(getType()).c_str());
+    printBasicStatuses();
     printf ("Temperature:  %f ºC\n", getTemp());
     printf ("Humidity:  %f %%\n", getHum());
     printSeparator();

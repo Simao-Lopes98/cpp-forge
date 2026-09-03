@@ -2,7 +2,7 @@
 
 #include <inttypes.h>
 #include <iostream>
-#include "mbed_man.hpp"
+#include "device.hpp"
 
 using namespace std;
 
@@ -12,11 +12,10 @@ class Sensor : public Device
         float temperature;
         float humidity;
     public:
-        Sensor (    int id, 
-                    bool state, 
-                    deviceType_t type, 
-                    float temperatur, 
-                    float humidity);
+        Sensor (int id,
+                bool state,
+                float temperatur,
+                float humidity);
 
         float getTemp (void);
         void setTemp (float temp);

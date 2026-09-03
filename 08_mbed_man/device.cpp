@@ -1,4 +1,4 @@
-#include "mbed_man.hpp"
+#include "device.hpp"
 
 static string deviceTypeMap [deviceType_t::END_OF_TYPE] =
 {
@@ -40,13 +40,12 @@ void Device::setType (deviceType_t type)
 
 string Device::typeToString (deviceType_t type)
 {
-    if (type < 0 || type > deviceType_t::END_OF_TYPE)
+    if (type < 0 || type > (END_OF_TYPE - 1))
     {
-        return "UNDEF";
+        return INVALID_DEV_TYPE;
     }
 
     return deviceTypeMap [type];
-    
 }
 
 string Device::stateToString (bool state)
@@ -59,10 +58,15 @@ void Device::printSeparator (void)
     printf ("--------------------------------\n");
 }
 
-void Device::printStatus (void)
+void Device::printBasicStatuses (void)
 {
     printf ("Id:    %" PRIu16 "\n", id);
     printf ("State: %s\n", stateToString(state).c_str());
     printf ("Type:  %s\n", typeToString (type).c_str());
+}
+
+void Device::printStatus (void)
+{
+    printBasicStatuses();
     printSeparator();
 }

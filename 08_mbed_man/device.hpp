@@ -3,6 +3,8 @@
 #include <inttypes.h>
 #include <iostream>
 
+#define INVALID_DEV_TYPE "UNDEF"
+
 using namespace std;
 
 // Typedefs
@@ -31,6 +33,7 @@ class Device {
         virtual void printStatus (void);
     protected:
         void printSeparator (void);
+        void printBasicStatuses (void);
         string typeToString (deviceType_t type);
         string stateToString (bool state);
 
